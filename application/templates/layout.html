@@ -6,6 +6,10 @@
     </head>
 
     <body>
+        <ul>
+            <li><a href="{{ url_for('tasks_index') }}">List tasks</a></li>
+            <li><a href="{{ url_for('tasks_form') }}">Add new task</a></li>
+        </ul>
         {% block body %}
         <p>
             Content.
