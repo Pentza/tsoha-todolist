@@ -4,3 +4,5 @@ Muistilista on tietokantasovellus, minne voit lisätä muistettavia asioita, teh
 Tehtäville voidaan antaa tärkeysaste, sekä kategoria. Tärkeysaste kertoo tehtävien tärkeysjärjestyksen, kun kategoria kertoo liittyykö tehtävä esimerkiksi kouluun vai töihin. 
 
 #### [Tietokantakaavio](https://github.com/Pentza/tsoha-todolist/blob/master/documentation/tietokantakaavio.png)
+
+#### [Heroku](https://tsoha-tasklist.herokuapp.com/)
