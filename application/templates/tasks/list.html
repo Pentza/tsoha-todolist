@@ -1,14 +1,23 @@
 {% extends "layout.html" %}
 
 {% block body %}
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
+
 <table>
     <tr>
         <th>Task</th>
-        <th>Done</th>
+        <th>Ungency</th>
+        <th>Done?</th>
     </tr>
     {% for task in tasks %}
     <tr>
-        <td>{{ task.name }}</td>
+        <td>{{ task.name }}</td>    
+        <td>{{ task.urgency }}</td>
         <td>{{ task.done }}</td>
         <td>
             <form method="POST" action="{{ url_for('tasks_set_done', task_id=task.id) }}">

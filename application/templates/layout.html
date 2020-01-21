@@ -2,11 +2,13 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Muistilista</title>
+        <title>TaskList</title>
+
     </head>
 
     <body>
         <ul>
+            <h1>TaskList</h1>
             <li><a href="{{ url_for('tasks_index') }}">List tasks</a></li>
             <li><a href="{{ url_for('tasks_form') }}">Add new task</a></li>
         </ul>
