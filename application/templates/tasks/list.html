@@ -7,7 +7,7 @@
         border: 1px solid black;
     }
 </style>
-
+{% if current_user.is_authenticated %}
 <table>
     <tr>
         <th>Task</th>
@@ -35,4 +35,7 @@
     </tr>
     {% endfor %}
 </table>
+{% else %}
+<p>Log in to see your tasklist</p>
+{% endif %}
 {% endblock %}
