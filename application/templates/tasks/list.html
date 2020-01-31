@@ -16,8 +16,16 @@
     </tr>
     {% for task in tasks %}
     <tr>
-        <td>{{ task.name }}</td>    
-        <td>{{ task.urgency }}</td>
+        <td>{{ task.name }}</td>  
+        {% if task.urgency == 1 %}  
+        <td>Not urgent</td>
+        {% elif task.urgency == 2 %}
+        <td>Semi urgent</td>
+        {% elif task.urgency == 3 %}
+        <td>Urgent</td>
+        {% else %}
+        <td></td>
+        {% endif %}
         <td>{{ task.done }}</td>
         <td>
             <form method="POST" action="{{ url_for('tasks_set_done', task_id=task.id) }}">
