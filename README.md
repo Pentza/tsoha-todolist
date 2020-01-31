@@ -8,6 +8,6 @@ Tehtäville voidaan antaa tärkeysaste, sekä kategoria. Tärkeysaste kertoo teh
 #### [Käyttötapauksia](https://github.com/Pentza/tsoha-todolist/blob/master/documentation/usecases.md)
 
 #### [Heroku](https://tsoha-tasklist.herokuapp.com/)
-Testikäyttäjä
-Käyttäjätunnus: testi
-Salasana: testi
+Testikäyttäjä  
+Käyttäjätunnus: testi  
+Salasana: testi  
