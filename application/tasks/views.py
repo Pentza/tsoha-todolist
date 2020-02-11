@@ -5,8 +5,9 @@ from application.tasks.models import Task
 from application.tasks.forms import TaskForm
 
 @app.route("/tasks", methods=["GET"])
+@login_required
 def tasks_index():
-	return render_template("tasks/list.html", tasks = Task.query.all())
+	return render_template("tasks/list.html", tasks = Task.query.all(), id = current_user.id)
 
 @app.route("/tasks/new")
 @login_required

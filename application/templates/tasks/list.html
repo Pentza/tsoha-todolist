@@ -16,6 +16,7 @@
         <th>Edit</th>
     </tr>
     {% for task in tasks %}
+    {% if task.account_id == id %}
     <tr>
         <td>{{ task.name }}</td>  
         {% if task.urgency == 1 %}  
@@ -39,6 +40,7 @@
             </form>
         </td>
     </tr>
+    {% endif %}
     {% endfor %}
 </table>
 {% else %}
