@@ -8,7 +8,7 @@ class Task(Base):
 	urgency = db.Column(db.Integer)
 	done = db.Column(db.Boolean, nullable=False)
 
-	account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=False)
+	tasklist_id = db.Column(db.Integer, db.ForeignKey('task_list.id'), nullable=False)
 
 	def __init__(self, name):
 		self.name = name

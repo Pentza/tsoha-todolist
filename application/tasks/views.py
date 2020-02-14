@@ -48,7 +48,8 @@ def tasks_create():
 	t = Task(form.name.data)
 	t.urgency = form.urgency.data
 	t.done = form.done.data
-	t.account_id = current_user.id
+
+	t.tasklist_id = form.tasklist.id
 
 	db.session().add(t)
 	db.session().commit()
