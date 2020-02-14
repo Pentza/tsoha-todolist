@@ -24,6 +24,9 @@ from application.tasks import views
 from application.auth import models
 from application.auth import views
 
+from application.tasklist import models
+from application.tasklist import views
+
 # Kirjautuminen
 from application.auth.models import User
 from os import urandom
