@@ -1,0 +1,28 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form method="POST" action="{{url_for('tasklist_create') }}">
+    <table>
+        <tr>
+            <td>
+                {{ form.name.label }}
+            </td>
+            <td>
+                {{ form.name }}
+            </td>
+            <td>
+                <ul>
+                    {% for error in form.name.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" name="name" value="Add new TaskList">
+            </td>
+        </tr>
+    </table>
+</form>
+{% endblock %}

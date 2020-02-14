@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+<style>
+    table, th, td {
+        border: 1px solid black;
+    }
+</style>
+{% if current_user.is_authenticated %}
+<table>
+    <tr>
+        <th>Task</th>
+        <th>Urgency</th>
+        <th>Done?</th>
+        <th>Edit</th>
+    </tr>
+    {% for task in tasks %}
+    {% if task.account_id == id %}
+    <tr>
+        <td>{{ task.name }}</td>  
+        {% if task.urgency == 1 %}  
+        <td>Not urgent</td>
+        {% elif task.urgency == 2 %}
+        <td>Semi urgent</td>
+        {% elif task.urgency == 3 %}
+        <td>Urgent</td>
+        {% else %}
+        <td></td>
+        {% endif %}
+        <td>{{ task.done }}</td>
+        <td>
+            <form method="POST" action="{{ url_for('tasks_set_done', task_id=task.id) }}">
+                <input type="submit" value="Done"/>
+            </form>
+        </td>
+        <td>
+            <form method="POST" action="{{ url_for('tasks_delete', task_id=task.id) }}">
+                <input type="submit" value="Delete" style="color: red;">
+            </form>
+        </td>
+    </tr>
+    {% endif %}
+    {% endfor %}
+</table>
+{% else %}
+<p>Log in to see your tasklist</p>
+{% endif %}
+{% endblock %}
