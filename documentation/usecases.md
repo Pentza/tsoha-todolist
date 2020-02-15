@@ -1,5 +1,6 @@
 ## Käyttötapauksia
 * Rekisteröityminen ja kirjautuminen
+* Käyttäjä voi luoda useita muistilistoja esimerkiksi koulu/työ/koti
 * Käyttäjä voi listätä muistilistalle asioita (Syötteet validoitu)
 * Käyttäjä voi muokata muistilistalla olevia asioita esimerkiksi merkitä tehdyksi tai nimetä uudelleen
 * Käyttäjä voi poistaa muistilistalta asioita
