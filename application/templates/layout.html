@@ -17,9 +17,17 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item">
-          <a class="nav-link" href="{{ url_for('tasks_index') }}">List task <span class="sr-only">(current)</span></a>
+        {% if current_user.is_authenticated %}
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">List tasks</a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            {% for list in tasklists %}
+            <a class="dropdown-item" href="{{ url_for('show_tasklist', list_id = list.id) }}" >{{ list.name }}</a>
+            {% endfor %}
+          </div>
+          <!---- <a class="nav-link" href="{{ url_for('tasklists_index') }}">List task <span class="sr-only">(current)</span></a> -->
         </li>
+        {% endif %}
         <li class="nav-item">
           <a class="nav-link" href="{{ url_for('tasks_form') }}">Add new task</a>
         </li>
