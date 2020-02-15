@@ -40,16 +40,17 @@ def tasks_delete(task_id):
 @app.route("/tasks/", methods=["POST"])
 @login_required
 def tasks_create():
+	
 	form = TaskForm(request.form)
 
 	if not form.validate():
-		return render_template("tasks/new.html", form = form)
+		return render_template("tasks/new.html", form = TaskForm())
 
 	t = Task(form.name.data)
 	t.urgency = form.urgency.data
 	t.done = form.done.data
 
-	t.tasklist_id = form.tasklist.id
+	t.tasklist_id = form.tasklist.data
 
 	db.session().add(t)
 	db.session().commit()
