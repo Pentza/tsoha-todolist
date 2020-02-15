@@ -1,13 +1,12 @@
 from application import db
+from application.models import Base
 
-class TaskList(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-
+class Tasklist(Base):
     name = db.Column(db.String(144), nullable = False)
 
-    account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable = False)
+    account_id = db.Column(db.Integer, db.ForeignKey('account.id'), nullable=False)
 
-    tasks = db.relationship("Task", backref='TaskList', lazy = True)
+    tasks = db.relationship("Task", backref='tasklist', lazy = True)
 
     def __init__(self, name):
         self.name = name

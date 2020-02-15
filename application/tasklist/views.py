@@ -2,7 +2,7 @@ from application import app, db
 from flask import redirect, render_template, request, url_for
 from flask_login import login_required, current_user
 
-from application.tasklist.models import TaskList
+from application.tasklist.models import Tasklist
 from application.tasklist.forms import TaskListForm
 
 @app.route("/tasklist/new")
@@ -18,7 +18,7 @@ def tasklist_create():
     if not form.validate():
         return render_template("tasklist/new.html", form = form)
 
-    t = TaskList(form.name.data)
+    t = Tasklist(form.name.data)
     t.account_id = current_user.id
 
     db.session().add(t)

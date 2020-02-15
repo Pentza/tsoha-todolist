@@ -11,9 +11,9 @@ class User(Base):
     username = db.Column(db.String(144), nullable=False)
     password = db.Column(db.String(144), nullable=False)
 
-    tasklist = db.relationship("TaskList", backref='account', lazy = True)
+    tasklists = db.relationship("Tasklist", backref='account', lazy=True)
 
-    # tasks = db.relationship("Task", backref='account', lazy=True)
+    #tasks = db.relationship("Task", backref='account', lazy=True)
 
     def __init__(self, name, username, password):
         self.name = name
@@ -36,8 +36,8 @@ class User(Base):
     @staticmethod
     def find_users_with_no_tasks(done=False):
         stmt = text("SELECT Account.id, Account.name FROM Account"
-            " LEFT JOIN task_list ON task_list.account_id = Account.id"
-            " LEFT JOIN Task ON Task.tasklist_id = task_list.id"
+            " LEFT JOIN Tasklist ON Tasklist.account_id = Account.id"
+            " LEFT JOIN Task ON Task.tasklist_id = Tasklist.id"
             " WHERE (Task.done IS null OR Task.done = :done)"
             " GROUP BY Account.id"
             " HAVING COUNT(Task.id) = 0").params(done=done)
