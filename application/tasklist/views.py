@@ -16,7 +16,7 @@ def tasklists_index():
 @login_required
 def show_tasklist(list_id):
 
-    return render_template("tasklist/list.html", tasks = Task.query.filter(Task.tasklist_id==list_id).all())
+    return render_template("tasklist/list.html", tasks = Task.query.filter(Task.tasklist_id==list_id).all(), tasklists = Tasklist.query.filter(Tasklist.account_id==current_user.id).all())
 
 @app.route("/tasklist/new")
 @login_required
@@ -26,7 +26,7 @@ def tasklist_form():
 @app.route("/tasklist/", methods=["POST"])
 @login_required
 def tasklist_create():
-    
+
     if not form.validate():
         return render_template("tasklist/new.html", form = form)
 

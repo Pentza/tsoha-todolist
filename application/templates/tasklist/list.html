@@ -2,35 +2,47 @@
 
 {% block body %}
 {% if current_user.is_authenticated %}
+<div class="container">
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">TaskLists</button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            {% for list in tasklists %}
+            <a class="dropdown-item" href="{{ url_for('show_tasklist', list_id = list.id) }}">{{ list.name }}</a>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Task</th>
+                <th scope="col">Urgency</th>
+                <th scope="col">Done?</th>
+                <th scope="col">Delete</th>
+            </tr>
+        </thead>
+        {% for task in tasks %}
+        <tbody>
+            <tr>
+                <th scope="row">{{ task.name }}</th>
+                {% if task.urgency == 1 %}
+                <td>Not urgent</td>
+                {% elif task.urgency == 2 %}
+                <td>Semi urgent</td>
+                {% elif task.urgency == 3 %}
+                <td>Urgent</td>
+                {% else %}
+                <td></td>
+                {% endif %}
+                <td>{{ task.done }}</td>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th scope="col">Task</th>
-            <th scope="col">Urgency</th>
-            <th scope="col">Done?</th>
-            <th scope="col">Delete</th>
-        </tr>
-    </thead>
-    {% for task in tasks %}
-    <tbody>
-        <tr>
-            <th scope="row">{{ task.name }}</th>
-            {% if task.urgency == 1 %}  
-            <td>Not urgent</td>
-            {% elif task.urgency == 2 %}
-            <td>Semi urgent</td>
-            {% elif task.urgency == 3 %}
-            <td>Urgent</td>
-            {% else %}
-            <td></td>
-            {% endif %}
-            <td>{{ task.done }}</td>
-            
-        </tr>
-    </tbody>
-    {% endfor %}
-</table>
+            </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+</div>
 
 
 
