@@ -9,10 +9,11 @@ from application.tasks.forms import TaskForm
 def tasks_index():
 	return render_template("tasks/list.html", tasks = Task.query.all(), id = current_user.id)
 
-@app.route("/tasks/new")
+@app.route("/tasks/new", methods=["GET"])
 @login_required
 def tasks_form():
-	return render_template("tasks/new.html", form = TaskForm())
+	tasklist_id = request.args.get('tasklist_id')
+	return render_template("tasks/new.html", form = TaskForm(), tasklist_id=tasklist_id)
 
 @app.route("/tasks/<task_id>/", methods=["POST"])
 @login_required
@@ -37,7 +38,7 @@ def tasks_delete(task_id):
 
 	return redirect(url_for("tasks_index"))
 
-@app.route("/tasks/", methods=["POST"])
+@app.route("/tasks/", methods=["GET", "POST"])
 @login_required
 def tasks_create():
 	
@@ -50,7 +51,7 @@ def tasks_create():
 	t.urgency = form.urgency.data
 	t.done = form.done.data
 
-	t.tasklist_id = form.tasklist.data
+	t.tasklist_id = request.args.get('list_id')
 
 	db.session().add(t)
 	db.session().commit()
