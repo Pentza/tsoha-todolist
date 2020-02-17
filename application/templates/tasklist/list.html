@@ -11,6 +11,7 @@
             <a class="dropdown-item" href="{{ url_for('show_tasklist', list_id = list.id) }}">{{ list.name }}</a>
             {% endfor %}
         </div>
+        <a class="btn btn-secondary" role="button" href="{{ url_for('tasks_form', tasklist_id=current_list.id) }}">New Task</a>
     </div>
 </div>
 <div class="container">
@@ -21,6 +22,7 @@
                 <th scope="col">Urgency</th>
                 <th scope="col">Done?</th>
                 <th scope="col">Delete</th>
+                <th scope="col">{{ current_list.id }}</th>
             </tr>
         </thead>
         {% for task in tasks %}

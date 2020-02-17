@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 
 {% block body %}
-<form method="POST" action="{{url_for('tasks_create') }}">
+<form method="POST" action="{{url_for('tasks_create', list_id = tasklist_id) }}">
     <table>
         <tr>
             <td>
@@ -39,14 +39,6 @@
             </td>
             <td>
                 {{ form.done }}
-            </td>
-        </tr>
-        <tr>
-            <td>
-                {{ form.tasklist.label }}
-            </td>
-            <td>
-                {{ form.tasklist }}
             </td>
         </tr>
         <tr>
