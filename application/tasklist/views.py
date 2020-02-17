@@ -39,4 +39,10 @@ def tasklist_create():
     db.session().add(t)
     db.session().commit()
 
-    return redirect(url_for("tasks_index"))
+    return redirect(url_for("show_tasklist", list_id = t.id))
+
+#@app.route("/tasklist/delete/<list_id>", methods=["POST"])
+#@login_required
+#def tasklist_delete(list_id):
+#
+#    print(Tasklist.count())

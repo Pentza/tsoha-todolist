@@ -26,17 +26,18 @@ def tasks_set_done(task_id):
 		t.done = False
 	db.session().commit()
 
-	return redirect(url_for("tasks_index"))
+	return redirect(url_for("show_tasklist", list_id = t.tasklist_id))
 
 @app.route("/tasks/delete/<task_id>/", methods=["POST"])
 @login_required
 def tasks_delete(task_id):
 
+	tasklist_id = Task.query.get(task_id).tasklist_id
 	Task.query.filter(Task.id == task_id).delete()
 
 	db.session().commit()
 
-	return redirect(url_for("tasks_index"))
+	return redirect(url_for("show_tasklist", list_id = tasklist_id))
 
 @app.route("/tasks/", methods=["GET", "POST"])
 @login_required
@@ -56,5 +57,5 @@ def tasks_create():
 	db.session().add(t)
 	db.session().commit()
 
-	return redirect(url_for("tasks_index"))
+	return redirect(url_for("show_tasklist", list_id = t.tasklist_id))
 
