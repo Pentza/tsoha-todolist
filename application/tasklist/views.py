@@ -15,8 +15,10 @@ def tasklists_index():
 @app.route("/tasklist/<list_id>", methods=["GET"])
 @login_required
 def show_tasklist(list_id):
-
-    return render_template("tasklist/list.html", tasks = Task.query.filter(Task.tasklist_id==list_id).all(), tasklists = Tasklist.query.filter(Tasklist.account_id==current_user.id).all())
+    current_list = Tasklist.query.get(list_id)
+    account_lists = Tasklist.query.filter(Tasklist.account_id==current_user.id).all()
+    tasklist_tasks = Task.query.filter(Task.tasklist_id==list_id).all()
+    return render_template("tasklist/list.html", tasks = tasklist_tasks, tasklists = account_lists, current_list = current_list)
 
 @app.route("/tasklist/new")
 @login_required
@@ -27,6 +29,7 @@ def tasklist_form():
 @login_required
 def tasklist_create():
 
+    form = TaskListForm(request.form)
     if not form.validate():
         return render_template("tasklist/new.html", form = form)
 
