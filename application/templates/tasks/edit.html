@@ -1,8 +1,45 @@
 {% extends "layout.html" %}
 
 {% block body %}
-
-<p>{{ task.name }}</p>
+<form method="POST" action="{{url_for('task_edit', task_id = task.id) }}">
+    <table>
+        <tr>
+            <td>
+                {{ form.new_name.label }}
+            </td>
+            <td>
+                {{ form.new_name(value = task.name) }}
+            </td>
+            <td>
+                <ul>
+                    {% for error in form.new_name.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                {{ form.new_urgency.label }}
+            </td>
+            <td>
+                {{ form.new_urgency(value = task.urgency) }}
+            </td>
+            <td>
+                <ul>
+                    {% for error in form.new_urgency.errors %}
+                    <li>{{ error }}</li>
+                    {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" name="name" value="Edit task">
+            </td>
+        </tr>
+    </table>
+</form>
 
 
 {% endblock %}
