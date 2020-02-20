@@ -39,8 +39,7 @@ class User(Base):
             " LEFT JOIN Tasklist ON Tasklist.account_id = Account.id"
             " LEFT JOIN Task ON Task.tasklist_id = Tasklist.id"
             " WHERE (Task.done IS null OR Task.done = :done)"
-            " GROUP BY Account.id"
-            " HAVING COUNT(Task.id) = 0").params(done=done)
+            " GROUP BY Account.id").params(done=done)
 
         res = db.engine.execute(stmt)
 

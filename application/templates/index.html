@@ -1,10 +1,12 @@
 {% extends "layout.html" %}
 
 {% block body %}
+{% if not current_user.is_authenticated %}
 <p>
     <b>Welcome to TaskList</b>
+    <p>Please Login/Register to continue.</p>
 </p>
-
+{% else %}
 {% if needs_tasks is defined %}
 <p>
     The following users need work:
@@ -18,5 +20,6 @@
     {% endfor %}
 </ul>
 
+{% endif %}
 {% endif %}
 {% endblock %}

@@ -48,7 +48,12 @@
                 </td>
                 <td>
                     <form method="POST" action="{{ url_for('tasks_delete', task_id=task.id) }}">
-                        <input type="submit" value="Delete" style="color: red;">
+                        <input type="submit" value="Delete">
+                    </form>
+                </td>
+                <td>
+                    <form method="POST" action="{{ url_for('task_edit', task_id=task.id) }}">
+                        <input type="submit" value="Edit">
                     </form>
                 </td>
 

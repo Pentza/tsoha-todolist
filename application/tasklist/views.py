@@ -15,11 +15,29 @@ def tasklists_index():
 @app.route("/tasklist/<list_id>", methods=["GET"])
 @login_required
 def show_tasklist(list_id):
+    
     current_list = Tasklist.query.get(list_id)
     account_lists = Tasklist.query.filter(Tasklist.account_id==current_user.id).all()
     tasklist_tasks = Task.query.filter(Task.tasklist_id==list_id).all()
-    if current_list == None:
-        return redirect(url_for("tasks_index"))
+
+    return render_template("tasklist/list.html", tasks = tasklist_tasks, tasklists = account_lists, current_list = current_list)
+
+@app.route("/tasklist/", methods=["GET"])
+@login_required
+def show_tasklist_first():
+    
+    if Tasklist.query.filter(Tasklist.account_id==current_user.id).first() == None:
+        return redirect(url_for("tasklist_form"))
+
+    current_list = Tasklist.query.filter(Tasklist.account_id==current_user.id).first()
+
+    list_id = current_list.id
+
+    
+
+    account_lists = Tasklist.query.filter(Tasklist.account_id==current_user.id).all()
+    tasklist_tasks = Task.query.filter(Task.tasklist_id==current_list.id).all()
+
     return render_template("tasklist/list.html", tasks = tasklist_tasks, tasklists = account_lists, current_list = current_list)
 
 @app.route("/tasklist/new")
@@ -53,4 +71,7 @@ def tasklist_delete(list_id):
 
     db.session().commit()
 
-    return redirect(url_for("show_tasklist", list_id = 1))
+    if Tasklist.query.filter(Tasklist.account_id==current_user.id).first() == None:
+        return redirect(url_for("index"))
+
+    return redirect(url_for("show_tasklist_first"))

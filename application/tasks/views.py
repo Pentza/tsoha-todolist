@@ -59,3 +59,8 @@ def tasks_create():
 
 	return redirect(url_for("show_tasklist", list_id = t.tasklist_id))
 
+@app.route("/task/edit/<task_id>", methods=["GET", "POST"])
+@login_required
+def task_edit(task_id):
+	return render_template("tasks/edit.html", task=Task.query.get(task_id))
+
