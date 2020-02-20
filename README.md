@@ -13,6 +13,7 @@ Muistilista on tietokantasovellus, johon voit luoda käyttäjän ja sille muisti
 #### Dokumentaatio:
 - [Tietokantakaavio](https://github.com/Pentza/tsoha-todolist/blob/master/documentation/tietokantakaavio.png)
 - [Käyttötapauksia](https://github.com/Pentza/tsoha-todolist/blob/master/documentation/usecases.md)
+- [Käyttöohje](https://github.com/Pentza/tsoha-todolist/blob/master/documentation/user_manual.md)
 
 #### Demo:
 Muistilista toimii [Herokussa.](https://tsoha-tasklist.herokuapp.com/)
