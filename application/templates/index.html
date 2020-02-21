@@ -21,5 +21,17 @@
 </ul>
 
 {% endif %}
+{% if total_tasks is defined %}
+<p>
+    Your urgent tasks:
+</p>
+<ul>
+    {% for task in total_tasks %}
+    <li>
+        '{{ task.name }}' listalla: {{ task.listname }}
+    </li>
+    {% endfor %}
+</ul>
+{% endif %}
 {% endif %}
 {% endblock %}
