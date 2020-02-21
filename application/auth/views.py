@@ -14,10 +14,12 @@ def auth_login():
     form = LoginForm(request.form)
     # validoinnit
 
-    user = User.query.filter_by(username=form.username.data, password=form.password.data).first()
+    user = User.query.filter_by(username=form.username.data).first()
     if not user:
         return render_template("auth/loginform.html", form = form, error = "No such username or password")
 
+    if not user.check_password(form.password.data):
+        return render_template("auth/loginform.html", form = form, error = "No such username or password")
 
     login_user(user)
     return redirect(url_for("index"))

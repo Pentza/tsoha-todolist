@@ -1,5 +1,6 @@
 from application import db
 from application.models import Base
+from werkzeug.security import generate_password_hash, check_password_hash
 
 from sqlalchemy.sql import text
 
@@ -9,7 +10,7 @@ class User(Base):
 
     name = db.Column(db.String(144), nullable=False)
     username = db.Column(db.String(144), nullable=False)
-    password = db.Column(db.String(144), nullable=False)
+    password_hash = db.Column(db.String(144), nullable=False)
 
     tasklists = db.relationship("Tasklist", backref='account', lazy=True)
 
@@ -18,7 +19,7 @@ class User(Base):
     def __init__(self, name, username, password):
         self.name = name
         self.username = username
-        self.password = password
+        self.password_hash = generate_password_hash(password)
 
     def get_id(self):
         return self.id
@@ -31,6 +32,12 @@ class User(Base):
 
     def is_authenticated(self):
         return True
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
 
     @staticmethod
