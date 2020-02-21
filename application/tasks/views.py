@@ -44,9 +44,10 @@ def tasks_delete(task_id):
 def tasks_create():
 	
 	form = TaskForm(request.form)
+	tasklist_id = request.args.get('list_id')
 
 	if not form.validate():
-		return render_template("tasks/new.html", form = TaskForm())
+		return render_template("tasks/new.html", form = form, tasklist_id=tasklist_id)
 
 	t = Task(form.name.data)
 	t.urgency = form.urgency.data
