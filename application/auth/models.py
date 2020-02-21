@@ -42,7 +42,7 @@ class User(Base):
 
     @staticmethod
     def find_users_with_no_tasks(done=False):
-        stmt = text("SELECT Account.id, Account.name FROM Account"
+        stmt = text("SELECT Account.username FROM Account"
             " LEFT JOIN Tasklist ON Tasklist.account_id = Account.id"
             " LEFT JOIN Task ON Task.tasklist_id = Tasklist.id"
             " WHERE (Task.done IS null OR Task.done = :done)"
@@ -52,6 +52,6 @@ class User(Base):
 
         response = []
         for row in res:
-            response.append({"id":row[0], "name":row[1]})
+            response.append({"username":row[0]})
 
         return response
