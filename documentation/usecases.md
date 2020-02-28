@@ -84,3 +84,10 @@ SELECT Task.name, Tasklist.name FROM Account
 			LEFT JOIN Task ON Task.tasklist_id = Tasklist.id
 			WHERE Account.id = :accountID AND Task.urgency=3
 ```
+Etusivulla lukee myös tehtäviesi lukumäärä
+```sql
+SELECT COUNT(Task.id) FROM Account
+		JOIN Tasklist ON Tasklist.account_id=Account.id
+		JOIN Task ON Task.tasklist_id= Tasklist.id
+		WHERE Account.id = :accountID
+```
