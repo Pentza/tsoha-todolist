@@ -1,4 +1,8 @@
 # Muistilista
+### Aineopintojen harjoitustyö: Tietokantasovellus, kevät 2020
+Työ on tehty Helsingin yliopiston tietojenkäsittelytieteen kandiohjelman harjoitustyönä.
+Tietokantasovellus on aineopintojen harjoitustyö.
+[Linkki kurssisivulle](https://courses.helsinki.fi/fi/tkt20011)
 #### Aihekuvaus
 Muistilista on tietokantasovellus, johon voit luoda käyttäjän ja sille muistilistoja. Muistilista voi olla vaikka koulua tai töitä varten ja listalle voidaan lisätä muistettavia tehtäviä, asioita, askareita yms. Tehtäville voidaan antaa tärkeysaste, ja tieto siitä onko tehtävä tehty vai ei. Tehtäviä voidaan luoda lisää, muokata, asettaa tehdyksi ja poistaa. Myös listoja voidaan luoda ja poistaa.
 
