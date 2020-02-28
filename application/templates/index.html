@@ -21,17 +21,24 @@
 </ul>
 
 {% endif %}
-{% if total_tasks is defined %}
+{% if total_urgent_tasks is defined %}
 <p>
     Your urgent tasks:
 </p>
 <ul>
-    {% for task in total_tasks %}
+    {% for task in total_urgent_tasks %}
     <li>
         '{{ task.name }}' listalla: {{ task.listname }}
     </li>
     {% endfor %}
 </ul>
+{% endif %}
+{% if total_tasks is defined %}
+{% for count in total_tasks %}
+<p>
+    You have {{ count.count }} tasks.
+</p>
+{% endfor %}
 {% endif %}
 {% endif %}
 {% endblock %}

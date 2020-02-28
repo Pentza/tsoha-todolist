@@ -34,3 +34,18 @@ class Task(Base):
 			response.append({"name":row[0], "listname":row[1]})
 
 		return response
+
+	@staticmethod
+	def total_tasks(accountID):
+		stmt = text("SELECT COUNT(Task.id) FROM Account"
+					" JOIN Tasklist ON Account.id=Tasklist.account_id"
+					" JOIN Task ON Task.tasklist_id=Tasklist.id"
+					" WHERE Account.id = :accountID").params(accountID=accountID)
+
+		res = db.engine.execute(stmt)
+
+		response = []
+		for row in res:
+			response.append({"count":row[0]})
+
+		return response
