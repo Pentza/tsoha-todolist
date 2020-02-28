@@ -13,6 +13,7 @@
         </div>
         <a class="btn btn-secondary" role="button" href="{{ url_for('tasks_form', tasklist_id=current_list.id) }}">New Task</a>
         <a class="btn btn-secondary" role="button" href="{{ url_for('tasklist_delete', list_id=current_list.id) }}">Delete list</a>
+        <a class="btn btn-secondary" role="button" href="{{ url_for('tasklist_edit', list_id=current_list.id) }}">Edit list</a>
     </div>
 </div>
 <div class="container"><h2>{{ current_list.name }}</h2></div>

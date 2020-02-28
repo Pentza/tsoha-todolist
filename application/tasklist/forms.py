@@ -6,3 +6,9 @@ class TaskListForm(FlaskForm):
 
     class Meta:
         csrf = False
+
+class EditTaskListForm(FlaskForm):
+    new_name = StringField("TaskList name", [validators.Length(min=2, max=15)])
+
+    class Meta:
+        csrf = False
