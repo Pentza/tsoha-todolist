@@ -93,3 +93,9 @@ def tasklist_edit(list_id):
 	db.session().commit()
 
 	return redirect(url_for("show_tasklist", list_id = t.id))
+
+@app.route("/tasklist/list_all")
+@login_required
+def tasklist_list_all():
+    tasklists = Tasklist.query.filter(Tasklist.account_id==current_user.id).all()
+    return render_template("tasklist/list_all.html", tasklists = tasklists)
