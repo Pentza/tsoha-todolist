@@ -68,4 +68,19 @@ CREATE TABLE task (
 	FOREIGN KEY(tasklist_id) REFERENCES tasklist (id)
 );
 ```
-
+## Monimutkaisemmat yhteenvetokyselyt
+Etusivulla näkyy käyttäjät joilla ei ole tehtäviä tai joku tehtävä on 'not done'
+```sql
+SELECT Account.username FROM Account
+            LEFT JOIN Tasklist ON Tasklist.account_id = Account.id
+            LEFT JOIN Task ON Task.tasklist_id = Tasklist.id
+            WHERE (Task.done IS null OR Task.done = 0)
+            GROUP BY Account.id
+```
+Etusivulla näkyy omat tehtävät, jotka ovat kiireellisiä, sekä lista, jolla ne on
+```sql
+SELECT Task.name, Tasklist.name FROM Account
+			LEFT JOIN Tasklist ON Tasklist.account_id = Account.id
+			LEFT JOIN Task ON Task.tasklist_id = Tasklist.id
+			WHERE Account.id = :accountID AND Task.urgency=3
+```
