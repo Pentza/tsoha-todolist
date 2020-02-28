@@ -46,6 +46,6 @@ class Task(Base):
 
 		response = []
 		for row in res:
-			response.append({"count":row[0]})
+			response.append({"total":row[0]})
 
 		return response
